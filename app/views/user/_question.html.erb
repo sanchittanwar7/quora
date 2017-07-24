@@ -4,7 +4,11 @@
 			
 		</div>
 		<div class="userDetail">
+			<% unless question.anonymous %>
 			<%= question.user.first_name %><br>
+			<% else %>
+			Anonymous<br>
+			<% end %>
 			Asked <%= question.created_at.strftime("%b %d") %>
 		</div>
 	</div>
@@ -12,12 +16,13 @@
 		<div class="content">
 			<%= question.content %>?
 		</div>
+		<% if user_signed_in? %>
 
 		<% if question.user_id == current_user.id %>
 		<%= link_to 'Show', question %>
 		<%= link_to 'Edit', edit_question_path(question) %>
 		<%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %>
 		<% end %>
-
+		<% end %>
 	</div>
 </div>

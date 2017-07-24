@@ -27,11 +27,13 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-
+    puts params
     respond_to do |format|
       if @question.save
         format.html { redirect_to @question, notice: 'Question was successfully created.' }
-        format.js{}
+        format.js{
+          puts params
+        }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
@@ -72,6 +74,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:content, :first_name, :user_id)
+      params.require(:question).permit(:content, :first_name, :user_id, :anonymous)
     end
   end

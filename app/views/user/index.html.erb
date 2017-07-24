@@ -1,6 +1,9 @@
+<% if user_signed_in? %>
 <div id="form">
 	<%= form_for @question, remote: true do |f| %>
 	<%= f.text_area :content, placeholder: "What is your question?", :class => 'input'  %> <br>
+	<%= f.check_box :anonymous %>
+	<%= f.label :Anonymously %>
 	<%= f.hidden_field :user_id, :value => current_user.id %>
 	<div class="actions">
 		<%= f.submit %>
@@ -9,29 +12,39 @@
 
 <% end %>
 
+<% end %>
+
 
 <div id="questions">
 	<% @feed.each do |question| %>
-	<section>
-	<%= render 'question' ,question: question %>
-	<div id="answers">
-		<%= form_for @answer, remote: true do |f| %>
-		<%= f.text_area :content, placeholder: "Write answer...", :class => 'input'  %> <br>
-		<%= f.hidden_field :user_id, :value => current_user.id %>
-		<%= f.hidden_field :question_id, :value => question.id %>
-		<div class="actions">
-			<%= f.submit %>
-		</div>
-		<div class="answers">
-		<% @ans_feed.each do|answer| %>
-		<% if answer.question_id == question.id %>
-			<%= render 'answer', answer: answer %>
-		<% end %>
-		<% end %>
-		</div>
-	</div>
-	<% end %>
-	</section>
+		<section>
+			<%= render 'question' ,question: question %>
+			<div id="answers">
+				<% if user_signed_in? %>
+
+					<%= form_for @answer, remote: true do |f| %>
+					<%= f.text_area :content, placeholder: "Write answer...", :class => 'input'  %> <br>
+					<%= f.check_box :anonymous %>
+					<%= f.label :Anonymously %>
+					<%= f.hidden_field :user_id, :value => current_user.id %>
+					<%= f.hidden_field :question_id, :value => question.id %>
+
+					<div class="actions">
+						<%= f.submit %>
+					</div>
+				<% end %>
+
+				<% end %>
+									<%= div_for question, :class => "rowBox" do %>
+
+				<% @ans_feed.each do|answer| %>
+						<% if answer.question_id == question.id %>
+							<%= render 'answer', answer: answer %>
+						<% end %>
+					<% end %>
+				<% end %>
+			</div>
+		</section>
 	<% end %>
 	
 </div>

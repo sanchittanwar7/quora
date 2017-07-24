@@ -9,11 +9,10 @@
 <body>
 	<!-- <li>  <%= link_to "Sign Out",destroy_user_session_path,method: :delete %></li> -->
 
-	<% if user_signed_in? %>
 
 	<div id="header">
 		<div>
-			<%= image_tag("quora.png", size: "130x50") %>
+			<a href="/"><%= image_tag("quora.png", size: "130x50") %></a>
 		</div>
 		<div>
 			<form class="search-container">
@@ -22,22 +21,30 @@
 			</form>
 		</div>
 		<div id="profile">
+			
+			<% if user_signed_in? %>
 			<div id="dp">
 
 			</div>
 			<div class="dropdown">
 				<button onclick="myFunction()" class="dropbtn"><%= current_user.first_name %></button>
 				<div id="myDropdown" class="dropdown-content">
-					<a href="#">My Profile</a>
+					<a href="user/profile">My Profile</a>
 					<%= link_to "Sign Out",destroy_user_session_path,method: :delete %>	
 				</div>
 			</div>
+			<% else %>
+				<div>
+					<a href="users/sign_in" class="log">
+					Log in or Sign up
+					</a>
+				</div>
+
+			<% end %>
 		</div>
 	</div>
 
-	<% else %>
-
-	<% end %>
+	
 
 	<%= yield %>
 

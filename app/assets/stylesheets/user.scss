@@ -122,6 +122,23 @@ right: -45px;
 	}
 }
 
+.log {
+background-color: white;
+color: black;
+padding: 16px;
+font-size: 16px;
+border: none;
+cursor: pointer;
+height: 100%;
+
+}
+
+.log:hover, .log:focus {
+background-color: #fafafa;
+color: black;
+height: 100%;
+}
+
 .question{
 	width: 50vw;
 	margin: auto;
