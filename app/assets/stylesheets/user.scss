@@ -153,3 +153,50 @@ right: -45px;
 	}
 }
 
+.answer{
+	width: 100%;
+	margin: auto;
+	background-color: white;
+	margin-bottom: 8px;
+	.head{
+		display: flex;
+		height: 36px;
+		.userImage{
+			height: 100%;
+			width: 36px;
+			border-radius: 18px;
+			background-color: black;
+		}
+		.userDetail{
+			padding-left: 12px;
+			box-sizing: border-box;
+			font-size: 16px;
+		}
+	}
+	.body{
+		.content{
+			margin-top: 12px;
+			margin-bottom: 12px;
+			font-size: 24px;
+		}
+	}
+}
+
+#answers{
+	width: 50vw;
+	margin: auto;
+	background-color: white;
+	padding: 12px;
+	box-sizing: border-box;
+}
+#questions section{
+	border: 1px solid lightgrey;
+	width: 50vw;
+	margin:auto;
+}
+
+#questions #answers .input{
+	width: 100%;
+	padding: 12px;
+	box-sizing: border-box;
+}

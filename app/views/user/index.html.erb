@@ -1,10 +1,10 @@
 <div id="form">
-<%= form_for @question, remote: true do |f| %>
-<%= f.text_area :content, placeholder: "What is your question?", :class => 'input'  %> <br>
- <%= f.hidden_field :user_id, :value => current_user.id %>
-<div class="actions">
-	<%= f.submit %>
-</div>
+	<%= form_for @question, remote: true do |f| %>
+	<%= f.text_area :content, placeholder: "What is your question?", :class => 'input'  %> <br>
+	<%= f.hidden_field :user_id, :value => current_user.id %>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
 </div>
 
 <% end %>
@@ -12,7 +12,26 @@
 
 <div id="questions">
 	<% @feed.each do |question| %>
-		<%= render 'question' ,question: question %>
+	<section>
+	<%= render 'question' ,question: question %>
+	<div id="answers">
+		<%= form_for @answer, remote: true do |f| %>
+		<%= f.text_area :content, placeholder: "Write answer...", :class => 'input'  %> <br>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		<%= f.hidden_field :question_id, :value => question.id %>
+		<div class="actions">
+			<%= f.submit %>
+		</div>
+		<div class="answers">
+		<% @ans_feed.each do|answer| %>
+		<% if answer.question_id == question.id %>
+			<%= render 'answer', answer: answer %>
+		<% end %>
+		<% end %>
+		</div>
+	</div>
+	<% end %>
+	</section>
 	<% end %>
 	
 </div>
