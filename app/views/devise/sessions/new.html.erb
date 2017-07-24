@@ -1,0 +1,19 @@
+<body id="devise-body">
+  <div id="main">
+    <div id="header-image">
+      <%= image_tag("quora.png", size: "200x140") %>
+      <h2>A place to share knowledge and better understand the world</h2>
+    </div>
+    <div id="body">
+    <div id="main-left">
+      <%= render 'regForm' %>
+
+    </div>
+    <div id="main-right">
+      <%= render 'form' %>
+      <%= render "devise/shared/links" %>
+
+    </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quora</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<!-- <li>  <%= link_to "Sign Out",destroy_user_session_path,method: :delete %></li> -->
+
+	<% if user_signed_in? %>
+
+	<div id="header">
+		<div>
+			<%= image_tag("quora.png", size: "130x50") %>
+		</div>
+		<div>
+			<form class="search-container">
+				<input type="text" id="search-bar" placeholder="What can I help you with today?">
+				<a href="#"><img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"></a>
+			</form>
+		</div>
+		<div id="profile">
+			<div id="dp">
+
+			</div>
+			<div class="dropdown">
+				<button onclick="myFunction()" class="dropbtn"><%= current_user.first_name %></button>
+				<div id="myDropdown" class="dropdown-content">
+					<a href="#">My Profile</a>
+					<%= link_to "Sign Out",destroy_user_session_path,method: :delete %>	
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<% else %>
+
+	<% end %>
+
+	<%= yield %>
+
+</body>
+</html>

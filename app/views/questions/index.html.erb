@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<div id="ques">
+  <%= form_for(@question) do |f| %>
+  <% if @question.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+    <ul>
+      <% @question.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_field :content , placeholder: "What is your question?", :class => 'input'%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>
+</div>
+
+<h1>Listing Questions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questions.each do |question| %>
+    <tr>
+      <td><%= question.content %></td>
+      <td><%= link_to 'Show', question %></td>
+      <td><%= link_to 'Edit', edit_question_path(question) %></td>
+      <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Question', new_question_path %>
