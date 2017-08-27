@@ -2,6 +2,10 @@
 
 one:
   content: MyString
+  anonymous: false
+  user_id: 
 
 two:
   content: MyString
+  anonymous: false
+  user_id: 
