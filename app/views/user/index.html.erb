@@ -1,53 +1,136 @@
 <% if user_signed_in? %>
 <div id="form">
-	<%= form_for @question, remote: true do |f| %>
-	<%= f.text_area :content, placeholder: "What is your question?", :class => 'input'  %> <br>
-	<%= f.check_box :anonymous %>
-	<%= f.label :Anonymously %>
-	<%= f.hidden_field :user_id, :value => current_user.id %>
-	<div class="actions">
-		<%= f.submit %>
+	<div class="row">
+
+		<%= form_for @question, remote: true do |f| %>
+		<form class="col s12">
+			<div class="input-field col s11">
+				<i class="material-icons prefix">account_circle</i>
+				<%= f.text_field :content, placeholder: "What is your question?", :class => 'input'  %> <br>
+
+				<%= f.hidden_field :user_id, :value => current_user.id %>
+			</div>
+			<div class="actions col s12">
+
+				<%= f.check_box :anonymous, id:"anonymous" %>
+				<%= f.label :Anonymously , for:"anonymous", id:"anonymous"%>	&nbsp;	&nbsp;	&nbsp;
+				<div class="waves-effect waves-light btn">
+
+					<%= f.submit %>
+				</div>
+			</div>
+		</form>
+
+		<% end %>
+
 	</div>
 </div>
 
 <% end %>
 
-<% end %>
+
 
 
 <div id="questions">
+
+
 	<% @feed.each do |question| %>
-		<section>
-			<%= render 'question' ,question: question %>
-			<div id="answers">
-				<% if user_signed_in? %>
+	<section>
 
-					<%= form_for @answer, remote: true do |f| %>
-					<%= f.text_area :content, placeholder: "Write answer...", :class => 'input'  %> <br>
-					<%= f.check_box :anonymous %>
-					<%= f.label :Anonymously %>
-					<%= f.hidden_field :user_id, :value => current_user.id %>
-					<%= f.hidden_field :question_id, :value => question.id %>
 
-					<div class="actions">
-						<%= f.submit %>
+		<div class="row">
+			<div class="col s12">
+				<div class="card-panel ">
+					<span class="grey-text">
+						<%= render 'question' ,question: question %>
+					</span>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div id="answers">
+			<% if user_signed_in? %>
+
+
+			<div class="row">
+				<%= form_for @answer, remote: true do |f| %>
+
+				<form class="col s12">
+					<div class="input-field col s11">
+						<i class="material-icons prefix">account_circle</i>
+						<!-- <input id="icon_prefix" type="text" class="validate"> -->
+						<!-- <label for="icon_prefix">First Name</label> -->
+						<%= f.text_field :content, placeholder: "Write answer...", :class => 'input'  %> <br>
+
+
+						<%= f.hidden_field :user_id, :value => current_user.id %>
+						<%= f.hidden_field :question_id, :value => question.id %>
+
 					</div>
-				<% end %>
+					<div class="actions col s12">
+						<%= f.check_box :anonymous, id:"anonymous" %>
+						<%= f.label :Anonymously , for:"anonymous", id:"anonymous"%>	&nbsp;	&nbsp;	&nbsp;
+						<div class="waves-effect waves-light btn">
 
-				<% end %>
-									<%= div_for question, :class => "rowBox" do %>
+							<%= f.submit %>
+						</div>
+					</div>
+					<% end %>
+
+				</form>
+			</div>
+
+
+
+
+
+
+
+
+			<% end %>
+			<%= div_for question, :class => "rowBox" do %>
+			<ul class="collapsible popout" data-collapsible="accordion">
 
 				<% @ans_feed.each do|answer| %>
-						<% if answer.question_id == question.id %>
-							<%= render 'answer', answer: answer %>
-						<% end %>
-					<% end %>
+				<% if answer.question_id == question.id %>
+
+
+				<li>
+					<div class="collapsible-header"><i class="material-icons">border_color</i>
+						<div class="head">
+							<div class="userImage">
+
+							</div>
+							<div class="userDetail">
+								<% unless answer.anonymous %>
+								<%= answer.user.first_name %><br>
+								<% else %>
+								Anonymous<br>
+								<% end %>
+								Answered <%= answer.created_at.strftime("%b %d") %>
+							</div>
+						</div>
+					</div>
+					<div class="collapsible-body"><span><%= render 'answer', answer: answer %></span></div>
+				</li>
+
+
+
 				<% end %>
-			</div>
-		</section>
+				<% end %>
+			</ul>
+
+			<% end %>
+		</div>
+	</section>
 	<% end %>
-	
+
+
+
 </div>
+
 
 
 

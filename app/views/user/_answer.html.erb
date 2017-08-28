@@ -1,17 +1,5 @@
 <div class="answer">
-	<div class="head">
-		<div class="userImage">
-			
-		</div>
-		<div class="userDetail">
-			<% unless answer.anonymous %>
-			<%= answer.user.first_name %><br>
-			<% else %>
-			Anonymous<br>
-			<% end %>
-			Answered <%= answer.created_at.strftime("%b %d") %>
-		</div>
-	</div>
+	
 	<div class="body">
 		<div class="content">
 			<%= answer.content %>

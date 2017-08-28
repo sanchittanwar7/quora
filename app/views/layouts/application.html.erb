@@ -5,6 +5,12 @@
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body>
 	<!-- <li>  <%= link_to "Sign Out",destroy_user_session_path,method: :delete %></li> -->
@@ -27,18 +33,27 @@
 
 			</div>
 			<div class="dropdown">
-				<button onclick="myFunction()" class="dropbtn"><%= current_user.first_name %></button>
-				<div id="myDropdown" class="dropdown-content">
+				<a class='dropdown-button btn' href='#' data-activates='dropdown1'><%= current_user.first_name %></a>
+
+
+				<ul id='dropdown1' class='dropdown-content'>
+					<li><a href="user/profile"><i class="material-icons">account_circle</i>My Profile</a></li>
+					<li><%= link_to "Sign Out",destroy_user_session_path,method: :delete %></li>
+					
+				</ul>
+
+
+				<!-- <div id="myDropdown" class="dropdown-content">
 					<a href="user/profile">My Profile</a>
 					<%= link_to "Sign Out",destroy_user_session_path,method: :delete %>	
-				</div>
+				</div> -->
 			</div>
 			<% else %>
-				<div>
-					<a href="users/sign_in" class="log">
+			<div>
+				<a href="users/sign_in" class="log">
 					Log in or Sign up
-					</a>
-				</div>
+				</a>
+			</div>
 
 			<% end %>
 		</div>
