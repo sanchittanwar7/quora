@@ -113,7 +113,12 @@
 							</div>
 						</div>
 					</div>
-					<div class="collapsible-body"><span><%= render 'answer', answer: answer %></span></div>
+					<div class="collapsible-body"><span><%= render 'answer', answer: answer %>
+						    <% if current_user %>
+
+						<%= rating_for answer, 'content_quality' , half_show: true%>
+						<% end %>
+					</span></div>
 				</li>
 
 
