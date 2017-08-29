@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/' => 'user#index'
   root 'user#index'
   get 'user/profile' => 'user#profile'
+  get 'user/login' => 'user#login'
 
   devise_for :users, :controllers => { registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
   # The priority is based upon order of creation: first created -> highest priority.

@@ -5,31 +5,21 @@
 	justify-content: space around;
 	padding: 0;
 	margin: 0;
-	background-image :image-url('quora-back.png');
+	background-image :image-url('landing_pic.jpg');
+	backgroung-size: 1646px 100vh;
+	    background-repeat: no-repeat;
+
 }
 
-#main{
-	background-color: rgba(255,255,255,.8);
-	width: 50vw;
-	margin: auto;
+
 	#header-image{
 		    text-align: center;
 	}
-	#body{
-		display: flex;
-		#main-left{
-			padding: 10%;
-			box-sizing: border-box;
+	
 
-			width: 50%;
-		}
-		#main-right{
-		padding: 10%;
-			box-sizing: border-box;
-			width: 50%;
-		}
-		#main-right,#main-left{
-		padding-top: 0;
-		}
-	}
-}
+
+
+
+
+
+

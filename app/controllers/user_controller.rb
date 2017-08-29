@@ -4,7 +4,7 @@ class UserController < ApplicationController
 		respond_to do |format|
 			format.html{
 				@question = Question.new
-				@feed = Question.all.order(created_at: :desc).limit(10)
+				@feed = Question.all.order(created_at: :desc).page(params[:page]).per(5)
 				@answer = Answer.new
 				@ans_feed = Answer.all.order(created_at: :desc)
 			}
@@ -12,6 +12,8 @@ class UserController < ApplicationController
 		end
 	end
 	def profile
+	end
+	def login
 	end
 	
 end
