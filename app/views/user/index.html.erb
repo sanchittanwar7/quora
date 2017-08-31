@@ -12,8 +12,8 @@
 			</div>
 			<div class="actions col s12">
 
-				<%= f.check_box :anonymous, id:"anonymous" %>
-				<%= f.label :Anonymously , for:"anonymous", id:"anonymous"%>	&nbsp;	&nbsp;	&nbsp;
+				<%= f.check_box :anonymous, id:"anonymous1" %>
+				<%= f.label :Anonymously , for:"anonymous1", id:"anonymous1"%>	&nbsp;	&nbsp;	&nbsp;
 				<div class="waves-effect waves-light btn">
 
 					<%= f.submit %>
@@ -113,11 +113,13 @@
 							</div>
 						</div>
 					</div>
-					<div class="collapsible-body"><span><%= render 'answer', answer: answer %>
-						    <% if current_user %>
+					<div class="collapsible-body"><span>
+						<% if current_user %>
 
 						<%= rating_for answer, 'content_quality' , half_show: true%>
 						<% end %>
+					<%= render 'answer', answer: answer %>
+						    
 					</span></div>
 				</li>
 
