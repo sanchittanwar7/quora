@@ -16,3 +16,5 @@
 //= require_tree .
 //= require jquery.raty
 //= require ratyrate
+//= require typeahead
+

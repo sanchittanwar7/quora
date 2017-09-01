@@ -26,7 +26,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'kaminari'
 gem 'ratyrate'
-
+gem 'searchkick'
 
 
 

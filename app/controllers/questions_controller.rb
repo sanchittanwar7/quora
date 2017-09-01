@@ -9,6 +9,16 @@ class QuestionsController < ApplicationController
 
   end
 
+  def autocomplete
+    render json: Question.search(params[:query], {
+      fields: ["content"],
+      match: :word_start,
+      limit: 10,
+      load: false,
+      misspelling: {below: 5}
+    }).map(&:content)
+  end
+
   # GET /questions/1
   # GET /questions/1.json
   def show

@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   post '/rate' => 'rater#create', :as => 'rate'
   resources :answers
-  resources :questions
+  resources :questions do
+    collection do
+      get :autocomplete
+    end
+  end
+  
   get '/' => 'user#index'
   root 'user#index'
   get 'user/profile' => 'user#profile'
