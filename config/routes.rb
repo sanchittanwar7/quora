@@ -6,9 +6,9 @@ Rails.application.routes.draw do
       get :autocomplete
     end
   end
-  
-  get '/' => 'user#index'
-  root 'user#index'
+
+  get '/' => 'questions#index'
+  root 'questions#index'
   get 'user/profile' => 'user#profile'
   get 'user/login' => 'user#login'
 

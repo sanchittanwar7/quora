@@ -6,14 +6,19 @@
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-
-	<!-- Compiled and minified JavaScript -->
+	<script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js" ></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 <body>
 	<!-- <li>  <%= link_to "Sign Out",destroy_user_session_path,method: :delete %></li> -->
+
+
+
+
 
 
 	<div id="header">
@@ -24,9 +29,15 @@
 			<form class="search-container">
 				<form action="/" method="get">
 
-				<input name="term" type="text" id="search-bar" autocomplete="off" class="typeahead" placeholder="What can I help you with today?">
+					<input name="query" type="text"  id="query" autocomplete="off"  placeholder="What can I help you with today?">
+					<div class="row right">
+
+						<button class="btn waves-effect waves-light" type="submit" name="submit">
+							<i class="large material-icons">search</i>
+						</button>
+					</div>
 				</form>
-				<a href="#"><img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"></a>
+				<!-- <a href="#"><img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"></a> -->
 			</form>
 		</div>
 		<div id="profile">
@@ -40,7 +51,7 @@
 
 
 				<ul id='dropdown1' class='dropdown-content'>
-					<li><a href="user/profile"><i class="material-icons">account_circle</i>My Profile</a></li>
+					<li><a href="users/edit"><i class="material-icons">account_circle</i>My Profile</a></li>
 					<li><%= link_to "Sign Out",destroy_user_session_path,method: :delete %></li>
 					
 				</ul>
